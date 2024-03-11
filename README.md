@@ -1,40 +1,22 @@
-# MERN Social Media Website
-
-#### Website Link: https://sociallyy.netlify.app/
-
-##### Note: Potential Backend Delay
-
-- Please be aware that there may be delays in the response time of this application, especially during periods of high usage. The backend of this application is hosted on an unpaid server, which may result in longer response times.
+# TrueFeedback
 
 ## Overview
 
-This is a Fullstack MERN application that allows users to create accounts, authenticate, create post, delete post, like posts, and toggle between light and dark modes. It uses React for the frontend, Express and Node.js for the backend, MongoDB for the database, and Material-UI for the user interface.
+This is a Fullstack MERN application that allows users to create accounts, authenticate, and get a link to share with their friends to get anonymous messages. It uses React for the frontend, Express and Node.js for the backend, MongoDB for the database, and TailwindCSS for the user interface.
 
 ## Authentication
 
 - The app uses JWT for authentication. Users can sign up and log in securely.
 - Authentication routes are available in the `/server/routes/auth.js` file.
-- You can expand the authentication system and add features like password reset and email verification if needed.
 
-## Create Post and Delete Post
+## View and Delete Messages
 
-- Users have the ability to create new posts, each consisting of an image and a caption.
-- The post user create will be saved to the database and displayed in the feed of other users to see and interact with.
-- User can also delete the post.
+- User can see the messages sent to them and delete the messages.
+- User can also set the status of message acceptance.
 
-## Add and Remove Friends
+## Send Messages
 
-- Users have the ability to build and manage their friend lists. You can add people to your friend list and, if needed, remove them.
-
-## Likes Functionality
-
-- Users can like and unlike posts.
-- The likes are stored in the MongoDB database.
-
-## Dark Mode
-
-- The app includes a dark mode feature.
-- Dark mode styles can be customized in the `/client/src/theme.js` file.
+- User can share the link and set the message acceptance true to enable recieving anonymous messages from the person whome they have given the link.
 
 ## Prerequisites
 
@@ -46,8 +28,8 @@ This is a Fullstack MERN application that allows users to create accounts, authe
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Kartik213/Socially
-cd Socially
+git clone https://github.com/Kartik213/TrueFeedback
+cd TrueFeedback
 ```
 
 2. Install dependencies for both the server and client:
@@ -75,14 +57,16 @@ cd ../server
 npm start
 ```
 
-The server will run on port 3001 by default. 5. Start the client:
+The server will run on port 3001 by default. 
+
+5. Start the client:
 
 ```bash
 cd ../client
 npm run dev
 ```
 
-The React development server will start, and the app will be accessible at `http://localhost:3000`.
+The React development server will start, and the app will be accessible at `http://localhost:5173`.
 
 ## Deployment
 
@@ -98,12 +82,7 @@ The React development server will start, and the app will be accessible at `http
 - `/server/models`: MongoDB models for User and Post.
 - `/server/routes`: Express routes for authentication, posts and user.
 - `/client/src/components`: React components for the frontend.
-- `/client/src/pages`: Contains react component for different pages.
-- `/client/src/state`: React-redux for state managment.
-
-## Contributing
-
-Feel free to contribute to this project by creating pull requests or opening issues. Contributions are welcome!
+- `/client/src/pages`: Contains different pages.
 
 ## Acknowledgments
 
