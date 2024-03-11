@@ -4,6 +4,21 @@
 
 This is a Fullstack MERN application that allows users to create accounts, authenticate, and get a link to share with their friends to get anonymous messages. It uses React for the frontend, Express and Node.js for the backend, MongoDB for the database, and TailwindCSS for the user interface.
 
+### Landing Page
+![LandingPage](ReadmeImages/LandingPage.png)
+
+### Sign-Up Page
+![Sign-Up Page](ReadmeImages/Sign-up.png)
+
+### Sign-In Page
+![Sign-In Page](ReadmeImages/Sign-In.png)
+
+### User Dashboard
+![User Dashboard](ReadmeImages/Dashboard.png)
+
+### Public Profile
+![Public profile page to send message](PublicProfile.png)
+
 ## Authentication
 
 - The app uses JWT for authentication. Users can sign up and log in securely.
@@ -17,6 +32,7 @@ This is a Fullstack MERN application that allows users to create accounts, authe
 ## Send Messages
 
 - User can share the link and set the message acceptance true to enable recieving anonymous messages from the person whome they have given the link.
+- Website also offers some message suggestions which can be used.
 
 ## Prerequisites
 
