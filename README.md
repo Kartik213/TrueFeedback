@@ -17,7 +17,7 @@ This is a Fullstack MERN application that allows users to create accounts, authe
 ![User Dashboard](ReadmeImages/Dashboard.png)
 
 ### Public Profile
-![Public profile page to send message](PublicProfile.png)
+![Public profile page to send message](ReadmeImages/PublicProfile.png)
 
 ## Authentication
 
