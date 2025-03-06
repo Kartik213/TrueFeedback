@@ -10,12 +10,12 @@ export const register = async (req, res) => {
 
     const usernameExist = await User.findOne({username});
     if(usernameExist){
-      return res.status(204).json({message: "Username already taken"});
+      return res.status(400).json({message: "Username already taken"});
     }
 
     const emailExist = await User.findOne({ email });
     if (emailExist) {
-      return res.status(204).json({ message: "Email already in use" });
+      return res.status(400).json({ message: "Email already in use" });
     }
 
     const completeUrl = `${url}/u/${username}`;
@@ -124,7 +124,7 @@ export const refresh = (req, res) => {
 export const logout = (req, res) => {
   try {
     const cookies = req.cookies;
-    if (!cookies?.jwt) return res.sendStatus(204);
+    if (!cookies?.jwt) return res.sendStatus(400);
     // res.clearCookie("jwt", { httpOnly: true, sameSite: "None" });
     res.clearCookie("jwt", { sameSite: "None", secure: true });
     res.status(200).json({ message: "Logged out" });
