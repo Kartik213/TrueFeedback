@@ -1,8 +1,9 @@
 {
     "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "/api"
-      }
+      { "source": "/api/(.*)", "destination": "/api"},
+      { "source": "/u/:username", "destination": "/index.html" },
+      { "source": "/dashboard", "destination": "/index.html" },
+      { "source": "/sign-in", "destination": "/index.html" },
+      { "source": "/sign-up", "destination": "/index.html" }
     ]
   }
