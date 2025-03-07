@@ -8,7 +8,7 @@ import url from "../url";
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const url = window.location.origin;
+  const url2 = window.location.origin;
   const usernameRegExp = /^[A-Za-z0-9_]+$/;
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
@@ -22,9 +22,10 @@ const SignupForm = () => {
   const register = async (values) => {
     try{
       const response = await axios.post(
-        `{url}/auth/register`,
-        { ...values, url },
+        `${url}/auth/register`,
+        { ...values, url: url2 },
       );
+      console.log(response);
       if(response.status === 201){
         toast.success(response.data.message);
         navigate("/sign-in");
