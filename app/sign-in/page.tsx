@@ -12,7 +12,7 @@ export default async function SignInPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-6 py-12">
+    <main className="flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 sm:py-12">
       <AuthCard
         title="Welcome back"
         subtitle="Slip back into your board and check what people have been brave enough to say."

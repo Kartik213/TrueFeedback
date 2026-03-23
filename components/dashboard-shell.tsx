@@ -116,13 +116,13 @@ export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
 
   return (
     <div className="min-h-screen">
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 md:px-10">
-        <h1 className="funk-title text-2xl font-bold text-[var(--ink)]">True Feedback</h1>
-        <p className="hidden rounded-full border-2 border-[var(--line)] bg-[#fff0a8] px-4 py-2 text-sm font-semibold text-[var(--ink)] md:block">
+      <nav className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-5 sm:px-6 md:px-10">
+        <h1 className="funk-title text-xl font-bold text-[var(--ink)] sm:text-2xl">True Feedback</h1>
+        <p className="order-3 w-full rounded-full border-2 border-[var(--line)] bg-[#fff0a8] px-4 py-2 text-center text-sm font-semibold text-[var(--ink)] sm:order-none sm:w-auto">
           Welcome, {user.username}
         </p>
         <button
-          className="rounded-full border-2 border-[var(--line)] bg-[#ffb9a7] px-5 py-2 text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5 disabled:opacity-60"
+          className="rounded-full border-2 border-[var(--line)] bg-[#ffb9a7] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5 disabled:opacity-60 sm:px-5 sm:text-sm"
           onClick={handleLogout}
           disabled={isMutating}
         >
@@ -130,25 +130,25 @@ export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
         </button>
       </nav>
 
-      <main className="mx-auto max-w-6xl px-6 py-6 text-[var(--ink)]">
-        <section className="funk-panel card-pop rounded-[2rem] bg-[#fffaf4]/95 p-6 md:p-8">
-          <h1 className="funk-title text-4xl font-bold">User Dashboard</h1>
+      <main className="mx-auto max-w-6xl px-4 py-4 text-[var(--ink)] sm:px-6 sm:py-6">
+        <section className="funk-panel card-pop rounded-[1.7rem] bg-[#fffaf4]/95 p-5 sm:rounded-[2rem] sm:p-6 md:p-8">
+          <h1 className="funk-title text-3xl font-bold sm:text-4xl">User Dashboard</h1>
           <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--muted)]">
             Copy your public link, flip message mode on, and keep the good weirdness coming.
           </p>
           <div className="mt-6 flex flex-col gap-3 md:flex-row">
-            <p className="w-full rounded-[1.4rem] border-2 border-[var(--line)] bg-[#fff5ee] px-4 py-3 text-sm text-[var(--ink)]">
+            <p className="w-full break-all rounded-[1.4rem] border-2 border-[var(--line)] bg-[#fff5ee] px-4 py-3 text-sm text-[var(--ink)]">
               {user.url}
             </p>
             <button
-              className="rounded-[1.4rem] border-2 border-[var(--line)] bg-[#d9f6df] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5"
+              className="rounded-[1.4rem] border-2 border-[var(--line)] bg-[#d9f6df] px-5 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5 md:min-w-[7rem]"
               onClick={handleCopyUrl}
             >
               Copy
             </button>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
             <button
               type="button"
               aria-pressed={user.acceptMessages}
@@ -184,7 +184,7 @@ export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
         <section className="mt-10">
           <h2 className="funk-title text-2xl font-bold">Messages</h2>
           {user.messages.length === 0 ? (
-            <div className="funk-panel mt-4 rounded-[2rem] border-dashed bg-[#fffdf8]/85 p-8 text-[var(--muted)]">
+            <div className="funk-panel mt-4 rounded-[1.7rem] border-dashed bg-[#fffdf8]/85 p-6 text-[var(--muted)] sm:rounded-[2rem] sm:p-8">
               No messages yet. Share your public link to get started.
             </div>
           ) : (
@@ -192,14 +192,14 @@ export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
               {user.messages.map((message: MessageRecord) => (
                 <article
                   key={message._id}
-                  className="funk-panel card-pop flex items-start justify-between gap-4 rounded-[2rem] bg-[#fffdf8]/90 p-6"
+                  className="funk-panel card-pop flex flex-col gap-4 rounded-[1.7rem] bg-[#fffdf8]/90 p-5 sm:rounded-[2rem] sm:p-6 md:flex-row md:items-start md:justify-between"
                 >
                   <div>
                     <p className="text-xl font-semibold tracking-tight text-[var(--ink)]">{message.message}</p>
                     <p className="mt-2 text-sm text-[var(--muted)]">{formatDate(message.createdAt)}</p>
                   </div>
                   <button
-                    className="rounded-[1.1rem] border-2 border-[var(--line)] bg-[#ffc7b7] px-3 py-2 text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5"
+                    className="w-full rounded-[1.1rem] border-2 border-[var(--line)] bg-[#ffc7b7] px-3 py-2 text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5 sm:w-auto"
                     onClick={() => setMessagePendingDelete(message)}
                     disabled={isMutating}
                   >
@@ -213,12 +213,12 @@ export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
       </main>
 
       {messagePendingDelete ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(43,33,49,0.28)] p-6 backdrop-blur-sm">
-          <div className="funk-panel card-pop w-full max-w-md rounded-[2rem] bg-[#fffaf4] p-7">
-            <p className="inline-flex rounded-full border-2 border-[var(--line)] bg-[#fff0a8] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--ink)]">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(43,33,49,0.28)] p-3 backdrop-blur-sm sm:items-center sm:p-6">
+          <div className="funk-panel card-pop w-full max-w-md rounded-[1.7rem] bg-[#fffaf4] p-5 sm:rounded-[2rem] sm:p-7">
+            <p className="inline-flex rounded-full border-2 border-[var(--line)] bg-[#fff0a8] px-3 py-2 text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] sm:px-4 sm:text-xs sm:tracking-[0.18em]">
               Delete note
             </p>
-            <h3 className="funk-title mt-5 text-3xl font-bold text-[var(--ink)]">
+            <h3 className="funk-title mt-4 text-2xl font-bold text-[var(--ink)] sm:mt-5 sm:text-3xl">
               Remove this message?
             </h3>
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
