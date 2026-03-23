@@ -1,105 +1,51 @@
-# TrueFeedback
+# True Feedback
 
-## Overview
+This repository now targets a **Next.js App Router** architecture with **Auth.js credentials auth**, **MongoDB**, and **Mongoose**.
 
-This is a Fullstack MERN application that allows users to create accounts, authenticate, and get a link to share with their friends to get anonymous messages. It uses React for the frontend, Express and Node.js for the backend, MongoDB for the database, and TailwindCSS for the user interface.
+## Stack
 
-### Landing Page
-![LandingPage](ReadmeImages/LandingPage.png)
+- Next.js App Router
+- TypeScript
+- Auth.js with credentials-based sign-in
+- MongoDB + Mongoose
+- Tailwind CSS
 
-### Sign-Up Page
-![Sign-Up Page](ReadmeImages/Sign-up.png)
+## Environment
 
-### Sign-In Page
-![Sign-In Page](ReadmeImages/Sign-In.png)
-
-### User Dashboard
-![User Dashboard](ReadmeImages/Dashboard.png)
-
-### Public Profile
-![Public profile page to send message](ReadmeImages/PublicProfile.png)
-
-## Authentication
-
-- The app uses JWT for authentication. Users can sign up and log in securely.
-- Authentication routes are available in the `/server/routes/auth.js` file.
-
-## View and Delete Messages
-
-- User can see the messages sent to them and delete the messages.
-- User can also set the status of message acceptance.
-
-## Send Messages
-
-- User can share the link and set the message acceptance true to enable recieving anonymous messages from the person whome they have given the link.
-- Website also offers some message suggestions which can be used.
-
-## Prerequisites
-
-- Node.js and npm installed on your machine.
-- MongoDB database setup (you can use a local or cloud-based MongoDB instance).
-
-## Getting Started
-
-1. Clone the repository:
+Create `.env.local` from `.env.example` and set:
 
 ```bash
-git clone https://github.com/Kartik213/TrueFeedback
-cd TrueFeedback
+MONGODB_URI=your_mongodb_uri
+AUTH_SECRET=your_long_random_secret
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-2. Install dependencies for both the server and client:
+## Development
 
 ```bash
-cd server
 npm install
-cd ../client
-npm install
-```
-
-3. Configure Environment Variables:
-   Create a `.env` file in the `server` directory with the following variables:
-
-```bash
-PORT=3001
-MONGO_URL=your_mongodb_uri
-JWT_SECRET=your_secret_key
-```
-
-4. Start the server:
-
-```bash
-cd ../server
-npm start
-```
-
-The server will run on port 3001 by default. 
-
-5. Start the client:
-
-```bash
-cd ../client
 npm run dev
 ```
 
-The React development server will start, and the app will be accessible at `http://localhost:5173`.
+## Main Routes
 
-## Deployment
+- `/` landing page
+- `/sign-in` credentials login
+- `/sign-up` registration
+- `/dashboard` authenticated user dashboard
+- `/u/[username]` public anonymous message page
 
-- To deploy the app, you can use platforms like Heroku for the server and Vercel or Netlify for the client.
-- Don't forget to configure environment variables on your deployment platforms.
+## API Routes
 
-## Project Structure
+- `POST /api/auth/register`
+- `POST /api/auth/[...nextauth]`
+- `GET /api/user/me`
+- `PATCH /api/user/accept-messages`
+- `DELETE /api/user/messages/[messageId]`
+- `POST /api/user/send-message`
+- `GET /api/user/suggestions`
 
-- `/client`: Frontend React application.
-- `/server`: Backend Node.js and Express application.
-- `/server/controllers`: contains function for different operations.
-- `/server/middleware`: contains middleware.
-- `/server/models`: MongoDB models for User and Post.
-- `/server/routes`: Express routes for authentication, posts and user.
-- `/client/src/components`: React components for the frontend.
-- `/client/src/pages`: Contains different pages.
+## Notes
 
-## Acknowledgments
-
-- Thanks to the open-source community for providing tools and resources that made this project possible.
+- The legacy frontend now lives in `legacy-src/`, and the old Express backend remains in `api/` for reference during migration.
+- The new app no longer uses `localStorage` access tokens or the old custom refresh-token flow.
