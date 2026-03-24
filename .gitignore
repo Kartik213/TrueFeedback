@@ -10,6 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+.next
+.serena
+coverage
 *.local
 
 # Editor directories and files
@@ -25,3 +28,4 @@ dist-ssr
 
 .env
 .vercel
+interview.md
