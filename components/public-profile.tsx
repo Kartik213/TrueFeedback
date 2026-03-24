@@ -13,9 +13,26 @@ export function PublicProfile({ username }: { username: string }) {
     setIsLoadingSuggestions(true);
 
     try {
-      const response = await fetch("/api/user/suggestions");
+      const response = await fetch("/api/user/suggestions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username,
+          draft: message
+        })
+      });
       const data = (await response.json()) as { suggestions?: string[] };
+
+      if (!response.ok) {
+        toast.error("Could not load suggestions right now.");
+        return;
+      }
+
       setSuggestions(data.suggestions ?? []);
+    } catch {
+      toast.error("Could not load suggestions right now.");
     } finally {
       setIsLoadingSuggestions(false);
     }

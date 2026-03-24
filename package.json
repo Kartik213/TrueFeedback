@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/genai": "^1.46.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
     "bcryptjs": "^2.4.3",
     "mongoose": "^8",
     "next": "^15",
@@ -20,10 +23,10 @@
     "zod": "^3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/bcryptjs": "^2.4.6",
     "autoprefixer": "^10",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15",
