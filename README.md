@@ -1,16 +1,64 @@
 # True Feedback
 
-This repository now targets a **Next.js App Router** architecture with **Auth.js credentials auth**, **MongoDB**, and **Mongoose**.
+Anonymous feedback platform rebuilt to reflect stronger full-stack engineering judgment after 2 years of professional experience.
 
-## Stack
+This project started as an older React + Express app and was reworked into a modern **Next.js App Router** application with **Auth.js**, **MongoDB/Mongoose**, and a deployment-aware architecture for **Vercel**. The goal was not just to rebuild the UI, but to improve the decisions behind the product: auth design, server boundaries, UX quality, feature resilience, and low-cost infrastructure choices.
 
-- Next.js App Router
-- TypeScript
-- Auth.js with credentials-based sign-in
-- MongoDB + Mongoose
-- Tailwind CSS
+## Core Product Flow
 
-## Environment
+Users can create an account, share a public profile link, and receive anonymous messages. Logged-in users manage messages from a private dashboard, control whether they are accepting new messages, copy their public link, and delete messages. On the public page, senders can either type their own message or use AI-assisted suggestions that are generated safely on the server.
+
+## Architecture Highlights
+
+### App Structure
+
+- **Next.js App Router** for UI, routing, and server handlers in one codebase
+- **Auth.js** for credentials-based session management
+- **MongoDB + Mongoose** for data persistence
+- **Route Handlers** for registration, messaging, suggestions, and dashboard APIs
+
+## Tech Stack
+
+- **Frontend:** React, Next.js, Tailwind CSS
+- **Backend:** Next.js Route Handlers, Auth.js
+- **Database:** MongoDB, Mongoose
+- **Validation:** Zod
+- **Auth / Security:** Auth.js credentials auth, bcrypt password hashing
+- **AI / Infra:** Gemini API, Upstash Redis, Upstash Ratelimit
+- **Deployment:** Vercel
+
+## Main Features
+
+- Credentials-based sign up and sign in
+- Session-protected dashboard
+- Anonymous public messaging via `/u/[username]`
+- Accept / reject incoming messages
+- Delete message flow with modal confirmation
+- AI-generated sendable feedback suggestions
+- Server-side fallback suggestions when AI is unavailable
+- Responsive UI optimized for desktop and mobile
+
+## Routes
+
+### App Routes
+
+- `/` landing page
+- `/sign-in` credentials login
+- `/sign-up` registration
+- `/dashboard` authenticated user dashboard
+- `/u/[username]` public anonymous message page
+
+### API Routes
+
+- `POST /api/auth/register`
+- `POST /api/auth/[...nextauth]`
+- `GET /api/user/me`
+- `PATCH /api/user/accept-messages`
+- `DELETE /api/user/messages/[messageId]`
+- `POST /api/user/send-message`
+- `POST /api/user/suggestions`
+
+## Local Setup
 
 Create `.env.local` from `.env.example` and set:
 
@@ -23,33 +71,24 @@ UPSTASH_REDIS_REST_URL=your_upstash_redis_rest_url
 UPSTASH_REDIS_REST_TOKEN=your_upstash_redis_rest_token
 ```
 
-## Development
+Install and run:
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Main Routes
+Production checks:
 
-- `/` landing page
-- `/sign-in` credentials login
-- `/sign-up` registration
-- `/dashboard` authenticated user dashboard
-- `/u/[username]` public anonymous message page
-
-## API Routes
-
-- `POST /api/auth/register`
-- `POST /api/auth/[...nextauth]`
-- `GET /api/user/me`
-- `PATCH /api/user/accept-messages`
-- `DELETE /api/user/messages/[messageId]`
-- `POST /api/user/send-message`
-- `POST /api/user/suggestions`
+```bash
+npm run lint
+npm run build
+```
 
 ## Notes
 
-- The legacy frontend now lives in `legacy-src/`, and the old Express backend remains in `api/` for reference during migration.
-- The new app no longer uses `localStorage` access tokens or the old custom refresh-token flow.
-- AI suggestions use Gemini server-side and fall back to local suggestions if the provider or rate-limit layer is unavailable.
+- `legacy-src/` contains the older frontend kept for reference during the rebuild
+- `legacy-api/` contains the older Express backend kept for reference
+- AI suggestions are server-side only; no API keys are exposed to the client
+- If Gemini or the rate-limit layer is unavailable, the app falls back to local suggestions
+
