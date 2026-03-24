@@ -12,13 +12,13 @@ export default async function SignUpPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-4 py-8 sm:px-6 sm:py-12">
-      <AuthCard
-        title="Join True Feedback"
-        subtitle="Claim your colorful little corner of the internet and start collecting anonymous notes."
-      >
-        <SignUpForm />
-      </AuthCard>
-    </main>
+      <main className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-10">
+        <AuthCard
+          title="Join True Feedback"
+          subtitle="Claim your colorful little corner of the internet and start collecting anonymous notes."
+        >
+          <SignUpForm />
+        </AuthCard>
+      </main>
   );
 }

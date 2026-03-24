@@ -1,8 +1,6 @@
 import Link from "next/link";
 
 import { auth } from "@/auth";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 
 export default async function HomePage() {
   const session = await auth();
@@ -10,9 +8,7 @@ export default async function HomePage() {
   const username = session?.user?.username;
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <main className="flex flex-1 items-center justify-center px-4 py-6 sm:px-6 sm:py-10 md:px-10 md:py-14">
+    <main className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-10 md:px-10 md:py-14">
         <div className="mx-auto grid w-full max-w-6xl gap-5 sm:gap-8 lg:grid-cols-[1.25fr_0.9fr]">
           <section className="funk-panel card-pop rounded-[1.7rem] bg-[#fff7ef]/95 p-6 sm:rounded-[2rem] sm:p-8 md:p-12">
             <p className="mb-4 inline-flex rounded-full border-2 border-[var(--line)] bg-[#fff0a8] px-3 py-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[var(--ink)] sm:mb-5 sm:px-4 sm:text-xs sm:tracking-[0.25em]">
@@ -100,7 +96,5 @@ export default async function HomePage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
-    </div>
   );
 }

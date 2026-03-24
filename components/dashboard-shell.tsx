@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
 import { useState, useTransition } from "react";
 import { LuRefreshCw } from "react-icons/lu";
 import { toast } from "react-toastify";
@@ -20,7 +18,6 @@ function formatDate(dateString: string) {
 }
 
 export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
-  const router = useRouter();
   const [user, setUser] = useState(initialUser);
   const [isMutating, startTransition] = useTransition();
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -106,33 +103,11 @@ export function DashboardShell({ initialUser }: { initialUser: UserRecord }) {
     }
   };
 
-  const handleLogout = () => {
-    startTransition(async () => {
-      await signOut({ redirect: false });
-      router.push("/");
-      router.refresh();
-    });
-  };
-
   return (
     <div className="min-h-screen">
-      <nav className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-5 sm:px-6 md:px-10">
-        <h1 className="funk-title text-xl font-bold text-[var(--ink)] sm:text-2xl">True Feedback</h1>
-        <p className="order-3 w-full rounded-full border-2 border-[var(--line)] bg-[#fff0a8] px-4 py-2 text-center text-sm font-semibold text-[var(--ink)] sm:order-none sm:w-auto">
-          Welcome, {user.username}
-        </p>
-        <button
-          className="rounded-full border-2 border-[var(--line)] bg-[#ffb9a7] px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--ink)] transition hover:-translate-y-0.5 disabled:opacity-60 sm:px-5 sm:text-sm"
-          onClick={handleLogout}
-          disabled={isMutating}
-        >
-          Logout
-        </button>
-      </nav>
-
       <main className="mx-auto max-w-6xl px-4 py-4 text-[var(--ink)] sm:px-6 sm:py-6">
         <section className="funk-panel card-pop rounded-[1.7rem] bg-[#fffaf4]/95 p-5 sm:rounded-[2rem] sm:p-6 md:p-8">
-          <h1 className="funk-title text-3xl font-bold sm:text-4xl">User Dashboard</h1>
+          <h1 className="funk-title mt-4 text-3xl font-bold sm:text-4xl">Welcome, {user.username}</h1>
           <p className="mt-2 max-w-xl text-sm leading-7 text-[var(--muted)]">
             Copy your public link, flip message mode on, and keep the good weirdness coming.
           </p>

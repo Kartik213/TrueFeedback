@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { auth } from "@/auth";
+import { LogoutButton } from "@/components/logout-button";
 
 export async function SiteHeader() {
   const session = await auth();
@@ -15,12 +16,15 @@ export async function SiteHeader() {
       </Link>
       <div className="flex items-center gap-3">
         {session?.user ? (
-          <Link
-            href="/dashboard"
-            className="rounded-full border-2 border-[var(--line)] bg-[#d9f6df] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ink)] transition hover:-translate-y-0.5 sm:px-5 sm:text-sm sm:normal-case sm:tracking-normal"
-          >
-            Dashboard
-          </Link>
+          <>
+            <Link
+              href="/dashboard"
+              className="rounded-full border-2 border-[var(--line)] bg-[#d9f6df] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ink)] transition hover:-translate-y-0.5 sm:px-5 sm:text-sm sm:normal-case sm:tracking-normal"
+            >
+              Dashboard
+            </Link>
+            <LogoutButton />
+          </>
         ) : (
           <Link
             href="/sign-in"
